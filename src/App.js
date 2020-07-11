@@ -1,26 +1,63 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import Header from './components/Header';
 import './App.css';
+import RuangBelajar from './components/RuangBelajar';
+import Profile from './components/Profile';
+import RuangKelas from './components/RuangKelas';
+import RuangMentor from './components/RuangMentor';
+import Login from './components/Login';
+import {BrowserRouter, Router, Route} from 'react-router-dom';
+class App extends Component {
+  state = {
+    showComponent: true
+  }
 
-function App() {
+  componentDidMount() {
+
+  }
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    
+    <BrowserRouter>
+    <div>
+      <Header />
+    <div className="container">
+      {
+      this.state.showComponent
+      ?
+        <Route exact path='/' component={RuangBelajar} />
+                : null
+      }
+      {
+      this.state.showComponent
+      ?
+          <Route path='/profile' component= {Profile} />
+          : null
+        }
+        {
+      this.state.showComponent
+      ?
+            <Route path='/ruangkelas' component= {RuangKelas} />
+            : null
+      }
+      {
+      this.state.showComponent
+      ?
+              <Route path='/ruangmentor' component={RuangMentor} />
+              : null
+            }
+             {
+      this.state.showComponent
+      ?
+                <Route path='/login' component={Login} />
+                : null
+      }
+           </div>
+           </div>
+            </BrowserRouter>
+
   );
+}
 }
 
 export default App;
